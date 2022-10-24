@@ -1,0 +1,7 @@
+.tabgroup {
+  display: flex;
+
+  &--horizontal {
+    flex-direction: column;
+  }
+}
