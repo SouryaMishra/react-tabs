@@ -1,0 +1,35 @@
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 0 0 1px #000;
+  border: none;
+  padding: 0.5rem 1rem;
+  background: #fff;
+  cursor: pointer;
+  color: inherit;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  outline: none;
+  font-weight: bold;
+
+  &:hover {
+    background: #e4f3ff;
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 4px #6fb7ff;
+    border: none;
+  }
+
+  &--active {
+    background: #1976d2;
+    box-shadow: 0 0 0 1px #1976d2;
+    color: #fff;
+
+    &:hover {
+      background: #014e9a;
+    }
+  }
+}
