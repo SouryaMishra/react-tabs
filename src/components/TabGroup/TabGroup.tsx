@@ -17,9 +17,14 @@ export const TabGroup = ({ value, onChange, children }: ITabGroupProps) => {
       }}
     >
       <div>
-        {React.Children.map(children, (child: any) => {
-          return child;
-        })}
+        {tabs}
+        {tabpanels.map((tabPanel: any, index: number) =>
+          React.cloneElement(tabPanel, {
+            key: index,
+            ariaLabelledBy: "tab-" + index,
+            id: "tabpanel-" + index,
+          })
+        )}
       </div>
     </TabGroupContext.Provider>
   );

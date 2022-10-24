@@ -7,7 +7,18 @@ export interface ITabPanelProps extends IBaseProps {
   value: string | number;
 }
 
-export const TabPanel = ({ value, children, className }: ITabPanelProps) => {
+interface IClonedTabPanelProps {
+  ariaLabelledBy?: string;
+  id?: string;
+}
+
+export const TabPanel = ({
+  value,
+  children,
+  className,
+  ariaLabelledBy,
+  id,
+}: ITabPanelProps & IClonedTabPanelProps) => {
   const { value: currentValue }: ITabGroupContext = useTabGroupContext()!;
   const isActive = value === currentValue;
   const classNames = cn(
@@ -19,7 +30,12 @@ export const TabPanel = ({ value, children, className }: ITabPanelProps) => {
   );
 
   return (
-    <div className={classNames} aria-hidden={!isActive}>
+    <div
+      id={id}
+      className={classNames}
+      aria-hidden={!isActive}
+      aria-labelledby={ariaLabelledBy || undefined}
+    >
       {children}
     </div>
   );

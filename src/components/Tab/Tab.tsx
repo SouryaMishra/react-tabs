@@ -10,11 +10,20 @@ export interface ITabProps extends IBaseProps {
 
 interface IClonedTabProps {
   onKeyDown?: (e: React.KeyboardEvent<HTMLButtonElement>) => void;
+  ariaControls?: string;
+  id?: string;
 }
 
 export const Tab = forwardRef<HTMLButtonElement, ITabProps>(
   (
-    { value, className, children, onKeyDown }: ITabProps & IClonedTabProps,
+    {
+      value,
+      className,
+      children,
+      onKeyDown,
+      ariaControls,
+      id,
+    }: ITabProps & IClonedTabProps,
     ref
   ) => {
     const { value: currentValue, onChange }: ITabGroupContext =
@@ -30,11 +39,13 @@ export const Tab = forwardRef<HTMLButtonElement, ITabProps>(
 
     return (
       <button
+        id={id}
         ref={ref}
         role="tab"
         className={classNames}
         onClick={(e) => onChange(value, e)}
         aria-selected={isActive}
+        aria-controls={ariaControls}
         tabIndex={isActive ? 0 : -1}
         onKeyDown={onKeyDown}
       >

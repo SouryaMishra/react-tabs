@@ -41,6 +41,8 @@ export const Tabs = ({ className, children }: ITabsProps) => {
         return React.cloneElement(tab, {
           ref: (el: HTMLElement) => (tabsRef.current[index] = el),
           onKeyDown,
+          ariaControls: "tabpanel-" + index,
+          id: "tab-" + index,
         });
       })}
     </div>
