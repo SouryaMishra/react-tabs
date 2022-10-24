@@ -9,6 +9,11 @@ export default {
     // More on Story layout: https://storybook.js.org/docs/react/configure/story-layout
     // layout: "fullscreen",
   },
+  argTypes: {
+    value: {
+      control: { disable: true },
+    },
+  },
 } as ComponentMeta<typeof TabGroup>;
 
 const Template: ComponentStory<typeof TabGroup> = (args) => {
