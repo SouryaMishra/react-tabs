@@ -52,6 +52,7 @@ export const Tab = forwardRef<HTMLButtonElement, ITabProps>(
         tabIndex={isActive ? 0 : -1}
         onKeyDown={onKeyDown}
         disabled={disabled}
+        aria-disabled={disabled}
       >
         {children}
       </button>
