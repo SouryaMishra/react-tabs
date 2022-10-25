@@ -9,17 +9,27 @@ export interface ITabsProps extends IBaseProps {}
 export const Tabs = ({ className, children }: ITabsProps) => {
   const tabsRef = useRef<HTMLElement[]>([]);
   const { alignment } = useTabGroupContext()!;
+  let nextKey = "",
+    prevKey = "";
+
+  if (alignment === "vertical") {
+    nextKey = "ArrowDown";
+    prevKey = "ArrowUp";
+  } else {
+    nextKey = "ArrowRight";
+    prevKey = "ArrowLeft";
+  }
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
     const tabsLength = tabsRef.current.length;
-    if (e.key === "ArrowRight") {
+    if (e.key === nextKey) {
       const index = tabsRef.current.findIndex((tab) => tab === e.target);
 
       index > -1 && index < tabsLength - 1
         ? tabsRef.current[index + 1].focus()
         : tabsRef.current[0].focus();
     }
-    if (e.key === "ArrowLeft") {
+    if (e.key === prevKey) {
       const index = tabsRef.current.findIndex((tab) => tab === e.target);
 
       index > -1 && index > 0
