@@ -1,7 +1,7 @@
 import React from "react";
 
 export interface ITabGroupContext {
-  tabGroupId: string;
+  tabGroupId?: string;
   value: string | number;
   onChange: (value: string | number, e: React.MouseEvent<HTMLElement>) => void;
   alignment?: "horizontal" | "vertical";
