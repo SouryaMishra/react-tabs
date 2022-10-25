@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { IBaseProps } from "../../baseProps";
+import { useTabGroupContext } from "../../contexts";
 import cn from "classnames";
 import "./Tabs.scss";
 
@@ -7,6 +8,7 @@ export interface ITabsProps extends IBaseProps {}
 
 export const Tabs = ({ className, children }: ITabsProps) => {
   const tabsRef = useRef<HTMLElement[]>([]);
+  const { alignment } = useTabGroupContext()!;
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
     const tabsLength = tabsRef.current.length;
@@ -35,8 +37,19 @@ export const Tabs = ({ className, children }: ITabsProps) => {
       index > -1 && tabsRef.current[tabsLength - 1].focus();
     }
   };
+
+  console.log(alignment);
+
+  const classNames = cn(
+    "tabs",
+    {
+      "tabs--horizontal": alignment === "horizontal",
+      "tabs--vertical": alignment === "vertical",
+    },
+    className
+  );
   return (
-    <div role="tablist" className={cn("tabs", className)}>
+    <div role="tablist" className={classNames}>
       {React.Children.map(children, (tab: any, index: number) => {
         return React.cloneElement(tab, {
           ref: (el: HTMLButtonElement) => {

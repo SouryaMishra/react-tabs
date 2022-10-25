@@ -1,5 +1,6 @@
 .tabgroup {
   display: flex;
+  gap: 1rem;
 
   &--horizontal {
     flex-direction: column;

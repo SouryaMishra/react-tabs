@@ -31,6 +31,7 @@ export const TabGroup = ({
       value={{
         value,
         onChange,
+        alignment,
       }}
     >
       <div className={classNames}>
