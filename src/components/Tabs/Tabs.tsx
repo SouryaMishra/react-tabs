@@ -39,7 +39,9 @@ export const Tabs = ({ className, children }: ITabsProps) => {
     <div role="tablist" className={cn("tabs", className)}>
       {React.Children.map(children, (tab: any, index: number) => {
         return React.cloneElement(tab, {
-          ref: (el: HTMLElement) => (tabsRef.current[index] = el),
+          ref: (el: HTMLButtonElement) => {
+            if (el && !el.disabled) tabsRef.current.push(el);
+          },
           onKeyDown,
           ariaControls: "tabpanel-" + index,
           id: "tab-" + index,

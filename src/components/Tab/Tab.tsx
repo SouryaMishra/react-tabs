@@ -6,6 +6,7 @@ import "./Tab.scss";
 
 export interface ITabProps extends IBaseProps {
   value: string | number;
+  disabled?: boolean;
 }
 
 interface IClonedTabProps {
@@ -23,6 +24,7 @@ export const Tab = forwardRef<HTMLButtonElement, ITabProps>(
       onKeyDown,
       ariaControls,
       id,
+      disabled,
     }: ITabProps & IClonedTabProps,
     ref
   ) => {
@@ -32,7 +34,8 @@ export const Tab = forwardRef<HTMLButtonElement, ITabProps>(
     const classNames = cn(
       "tab",
       {
-        "tab--active": isActive,
+        "tab--active": !disabled && isActive,
+        "tab--disabled": disabled,
       },
       className
     );
@@ -48,6 +51,7 @@ export const Tab = forwardRef<HTMLButtonElement, ITabProps>(
         aria-controls={ariaControls}
         tabIndex={isActive ? 0 : -1}
         onKeyDown={onKeyDown}
+        disabled={disabled}
       >
         {children}
       </button>

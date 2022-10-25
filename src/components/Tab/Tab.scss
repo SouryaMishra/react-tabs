@@ -32,4 +32,11 @@
       background: #014e9a;
     }
   }
+
+  &--disabled {
+    box-shadow: 0 0 0 1px #afb0b3;
+    color: #afb0b3;
+    cursor: auto;
+    pointer-events: none;
+  }
 }

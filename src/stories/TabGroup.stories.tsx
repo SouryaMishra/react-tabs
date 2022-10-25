@@ -21,13 +21,23 @@ const Template: ComponentStory<typeof TabGroup> = (args) => {
   return (
     <TabGroup {...args} value={value} onChange={(value, e) => setValue(value)}>
       <Tabs>
+        <Tab disabled value={0}>
+          Tab 0
+        </Tab>
         <Tab value={1}>Tab 1</Tab>
-        <Tab value={2}>Tab 2</Tab>
+        <Tab value={2} disabled>
+          Tab 2
+        </Tab>
         <Tab value={3}>Tab 3</Tab>
+        <Tab value={4} disabled>
+          Tab 4
+        </Tab>
       </Tabs>
+      <TabPanel value={0}>Tab 0 Content</TabPanel>
       <TabPanel value={1}>Tab 1 Content</TabPanel>
       <TabPanel value={2}>Tab 2 Content</TabPanel>
       <TabPanel value={3}>Tab 3 Content</TabPanel>
+      <TabPanel value={4}>Tab 4 Content</TabPanel>
     </TabGroup>
   );
 };
