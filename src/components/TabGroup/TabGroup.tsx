@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { IBaseProps } from "../../baseProps";
 import {
   ITabGroupContext,
@@ -6,10 +6,14 @@ import {
 } from "../../contexts/TabGroup.context";
 import cn from "classnames";
 import "./TabGroup.scss";
+import { nanoid } from "nanoid";
 
-export interface ITabGroupProps extends IBaseProps, ITabGroupContext {}
+export interface ITabGroupProps extends IBaseProps, ITabGroupContext {
+  id?: string;
+}
 
 export const TabGroup = ({
+  id,
   value,
   onChange,
   children,
@@ -26,9 +30,13 @@ export const TabGroup = ({
     },
     className
   );
+
+  const tabGroupId = useMemo(() => id || nanoid(5), [id]);
+
   return (
     <TabGroupContext.Provider
       value={{
+        tabGroupId,
         value,
         onChange,
         alignment,
@@ -39,8 +47,8 @@ export const TabGroup = ({
         {tabpanels.map((tabPanel: any, index: number) =>
           React.cloneElement(tabPanel, {
             key: index,
-            ariaLabelledBy: "tab-" + index,
-            id: "tabpanel-" + index,
+            ariaLabelledBy: tabGroupId + "-tab-" + index,
+            id: tabGroupId + "-tabpanel-" + index,
           })
         )}
       </div>

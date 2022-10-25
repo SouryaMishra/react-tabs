@@ -8,7 +8,7 @@ export interface ITabsProps extends IBaseProps {}
 
 export const Tabs = ({ className, children }: ITabsProps) => {
   const tabsRef = useRef<HTMLElement[]>([]);
-  const { alignment } = useTabGroupContext()!;
+  const { tabGroupId, alignment } = useTabGroupContext()!;
   let nextKey = "",
     prevKey = "";
 
@@ -48,8 +48,6 @@ export const Tabs = ({ className, children }: ITabsProps) => {
     }
   };
 
-  console.log(alignment);
-
   const classNames = cn(
     "tabs",
     {
@@ -66,8 +64,8 @@ export const Tabs = ({ className, children }: ITabsProps) => {
             if (el && !el.disabled) tabsRef.current.push(el);
           },
           onKeyDown,
-          ariaControls: "tabpanel-" + index,
-          id: "tab-" + index,
+          ariaControls: tabGroupId + "-tabpanel-" + index,
+          id: tabGroupId + "-tab-" + index,
         });
       })}
     </div>
