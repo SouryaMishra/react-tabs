@@ -32,11 +32,12 @@ export const TabPanel = ({
   return (
     <div
       id={id}
+      role="tabpanel"
       className={classNames}
       aria-hidden={!isActive}
       aria-labelledby={ariaLabelledBy || undefined}
     >
-      {children}
+      {isActive ? children : null}
     </div>
   );
 };
