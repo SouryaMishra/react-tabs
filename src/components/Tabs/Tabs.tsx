@@ -8,11 +8,11 @@ export interface ITabsProps extends IBaseProps {}
 
 export const Tabs = ({ className, children }: ITabsProps) => {
   const tabsRef = useRef<HTMLElement[]>([]);
-  const { tabGroupId, alignment } = useTabGroupContext()!;
+  const { tabGroupId, orientation } = useTabGroupContext()!;
   let nextKey = "",
     prevKey = "";
 
-  if (alignment === "vertical") {
+  if (orientation === "vertical") {
     nextKey = "ArrowDown";
     prevKey = "ArrowUp";
   } else {
@@ -51,13 +51,13 @@ export const Tabs = ({ className, children }: ITabsProps) => {
   const classNames = cn(
     "tabs",
     {
-      "tabs--horizontal": alignment === "horizontal",
-      "tabs--vertical": alignment === "vertical",
+      "tabs--horizontal": orientation === "horizontal",
+      "tabs--vertical": orientation === "vertical",
     },
     className
   );
   return (
-    <div role="tablist" className={classNames}>
+    <div role="tablist" aria-orientation={orientation === "vertical" ? "vertical" : undefined} className={classNames}>
       {React.Children.map(children, (tab: any, index: number) => {
         return React.cloneElement(tab, {
           ref: (el: HTMLButtonElement) => {

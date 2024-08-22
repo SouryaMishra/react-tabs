@@ -18,15 +18,15 @@ export const TabGroup = ({
   onChange,
   children,
   className,
-  alignment = "horizontal",
+  orientation = "horizontal",
 }: ITabGroupProps) => {
   const [tabs, ...tabpanels] = React.Children.toArray(children);
 
   const classNames = cn(
     "tabgroup",
     {
-      "tabgroup--horizontal": alignment === "horizontal",
-      "tabgroup--vertical": alignment === "vertical",
+      "tabgroup--horizontal": orientation === "horizontal",
+      "tabgroup--vertical": orientation === "vertical",
     },
     className
   );
@@ -39,7 +39,7 @@ export const TabGroup = ({
         tabGroupId,
         value,
         onChange,
-        alignment,
+        orientation,
       }}
     >
       <div className={classNames}>

@@ -4,7 +4,7 @@ export interface ITabGroupContext {
   tabGroupId?: string;
   value: string | number;
   onChange: (value: string | number, e: React.MouseEvent<HTMLElement>) => void;
-  alignment?: "horizontal" | "vertical";
+  orientation?: "horizontal" | "vertical";
 }
 
 export const TabGroupContext =
